@@ -27,19 +27,28 @@ export default function Navbar() {
     { name: "Por que ED²", href: "#por-que-ed2" },
   ];
 
-  // Closes the mobile menu and scrolls reliably to the section (works even on
-  // mobile where the animated/blurred panel can swallow the default link tap).
+  // Closes the mobile menu and scrolls reliably to the section. On mobile the
+  // menu close animation reflows the layout and cancels an immediate smooth
+  // scroll, so we wait for it to settle before scrolling.
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
+    const wasMenuOpen = mobileMenuOpen;
     setMobileMenuOpen(false);
-    if (href === "#") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-    }
+
+    const scrollToTarget = () => {
+      if (href === "#") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        const target = document.getElementById(href.replace("#", ""));
+        target?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+
+    // If the mobile menu was open, let its close animation finish first.
+    window.setTimeout(scrollToTarget, wasMenuOpen ? 320 : 0);
   };
 
   return (
