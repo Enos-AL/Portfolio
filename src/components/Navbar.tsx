@@ -57,16 +57,15 @@ export default function Navbar() {
           <a
             id="nav-logo-link"
             href="#"
+            onClick={(e) => handleNavClick(e, "#")}
+            aria-label="ED² Tecnologic - voltar ao início"
             className="flex items-center gap-3 group focus:outline-none focus:ring-1 focus:ring-brand-cyan rounded p-1"
           >
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-brand-bg-card border border-brand-cyan/25 group-hover:border-brand-green/50 transition-colors duration-300 shadow-[0_0_15px_rgba(0,217,255,0.1)]">
-              {/* Circuit decoration in logo block */}
-              <div className="absolute inset-0.5 rounded-md bg-gradient-to-tr from-brand-bg-main to-brand-bg-card opacity-85" />
-              <span className="relative font-display font-extrabold text-base tracking-tighter text-brand-cyan group-hover:text-brand-green transition-colors duration-300">
-                ED²
-              </span>
-              <div className="absolute -bottom-0.5 -right-0.5 w-2 h-2 rounded-full bg-brand-green group-hover:animate-ping" />
-            </div>
+            <img
+              src="/logo.png"
+              alt="Logo ED² Tecnologic"
+              className="w-11 h-11 object-contain drop-shadow-[0_0_12px_rgba(0,217,255,0.25)] group-hover:scale-105 transition-transform duration-300"
+            />
             <div className="flex flex-col">
               <span className="font-display font-bold text-lg leading-none tracking-tight text-brand-white group-hover:text-brand-cyan transition-colors duration-300">
                 ED² Tecnologic

@@ -54,9 +54,11 @@ export default function Footer() {
           {/* Logo Brand summary cell */}
           <div className="md:col-span-2 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-brand-bg-card border border-brand-cyan/25">
-                <span className="font-display font-extrabold text-base text-brand-green">ED²</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="Logo ED² Tecnologic"
+                className="w-12 h-12 object-contain drop-shadow-[0_0_12px_rgba(0,217,255,0.25)]"
+              />
               <div className="flex flex-col">
                 <span className="font-display font-bold text-lg leading-none text-brand-white">
                   ED² Tecnologic
@@ -74,6 +76,11 @@ export default function Footer() {
             <span className="block font-sans font-medium text-xs text-brand-green">
               “Tecnologia que transforma. Soluções que conectam.”
             </span>
+
+            <div className="flex flex-col gap-1 pt-1 font-mono text-[10px] text-brand-gray tracking-wide">
+              <span>CNPJ: 59.635.881/0001-60</span>
+              <span>Atendimento 100% remoto (online)</span>
+            </div>
           </div>
 
           {/* Quick linkages columns */}

@@ -161,9 +161,9 @@ export default function ContactSection() {
                     <MapPin className="w-5 h-5" aria-hidden="true" />
                   </div>
                   <div className="flex-grow">
-                    <p className="font-mono text-[9px] text-[#AAB4C0] uppercase tracking-wider leading-none">Área de Atuação</p>
+                    <p className="font-mono text-[9px] text-[#AAB4C0] uppercase tracking-wider leading-none">Atendimento</p>
                     <span className="text-brand-white text-xs sm:text-sm font-semibold block leading-tight">
-                      Jordânia - Minas Gerais, Brasil
+                      Remoto / Online · Jordânia-MG, Brasil
                     </span>
                   </div>
                 </div>
