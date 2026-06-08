@@ -23,8 +23,8 @@ const infoFields: { icon: React.ComponentType<any>; label: string; value: string
   { icon: Building2, label: "Porte", value: businessInfo.companySize },
   { icon: MapPin, label: "Cidade / UF", value: businessInfo.city },
   { icon: Calendar, label: "Data de abertura", value: businessInfo.openingDate },
-  { icon: Briefcase, label: "Atividade principal", value: businessInfo.mainActivity },
-  { icon: FileText, label: "CNAE principal", value: businessInfo.mainCnae },
+  { icon: Briefcase, label: "Ramo / Segmento", value: businessInfo.segment },
+  { icon: FileText, label: "CNAE principal (registro formal)", value: `${businessInfo.mainCnae} — ${businessInfo.mainActivity}` },
 ];
 
 const credibilityCards = [

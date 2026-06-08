@@ -10,6 +10,9 @@ export const businessInfo = {
   companySize: "ME",
   city: "Jordânia - MG",
   openingDate: "24/02/2025",
+  // Posicionamento/segmento de atuação (descritivo, voltado ao negócio).
+  segment: "Tecnologia e Soluções Digitais",
+  // Atividade e CNAE oficiais registrados (verificáveis na consulta pública).
   mainActivity: "Treinamento em informática",
   mainCnae: "P-8599-6/03",
   description:
