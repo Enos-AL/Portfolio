@@ -101,10 +101,8 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Right group: redes sociais discretas + CTA "Fale Conosco" */}
-          <div className="hidden md:flex items-center gap-3">
-            <SocialLinks size="sm" />
-            <span className="w-px h-5 bg-brand-cyan/15" aria-hidden="true" />
+          {/* Fale Conosco CTA Button */}
+          <div className="hidden md:block">
             <a
               id="cta-nav-whatsapp"
               href="#contato"
