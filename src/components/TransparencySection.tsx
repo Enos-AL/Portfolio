@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Building2, Hash, BadgeCheck, MapPin, Calendar, Briefcase, FileText, Sparkles,
-  Search, ShieldCheck, GraduationCap, Award, ExternalLink, CheckCircle, BookOpen, Layers
+  Search, ShieldCheck, GraduationCap, Eye, ExternalLink, CheckCircle, BookOpen, Layers
 } from "lucide-react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
-  businessInfo, academicCredentials, certificates, serviceAreas, secondaryActivities
+  businessInfo, certificates, serviceAreas, secondaryActivities, Certificate
 } from "../data/businessInfo";
+import CertificateModal from "./CertificateModal";
 
 // Reusable entrance animation (respects prefers-reduced-motion via MotionConfig).
 const reveal = {
@@ -51,6 +52,8 @@ const credibilityCards = [
 ];
 
 export default function TransparencySection() {
+  const [selectedCert, setSelectedCert] = useState<Certificate | null>(null);
+
   return (
     <section id="transparencia" className="relative py-24 scroll-mt-12 overflow-hidden bg-brand-bg-main/40">
 
@@ -165,97 +168,69 @@ export default function TransparencySection() {
           </div>
           <p className="text-brand-gray text-sm font-light max-w-2xl">
             Formação técnica e acadêmica que embasa o desenvolvimento das soluções da ED² Tecnologic.
+            <span className="text-brand-cyan"> Clique em um certificado para visualizá-lo.</span>
           </p>
 
-          {/* Academic credentials */}
+          {/* Certificados e diplomas (clicáveis -> modal) */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {academicCredentials.map((c, idx) => (
-              <motion.div
-                key={c.title}
-                {...reveal}
-                transition={{ duration: 0.4, delay: idx * 0.08 }}
-                whileHover={{ scale: 1.02 }}
-                className="group glass-panel rounded-2xl p-6 border border-brand-cyan/15 hover:border-brand-cyan/40 hover:shadow-[0_0_22px_rgba(0,217,255,0.12)] transition-colors duration-300 flex flex-col gap-3"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="w-11 h-11 rounded-xl bg-brand-bg-main border border-brand-cyan/20 group-hover:border-brand-green/40 flex items-center justify-center text-brand-cyan group-hover:text-brand-green transition-colors">
-                    <GraduationCap className="w-5 h-5" aria-hidden="true" />
+            {certificates.map((cert, idx) => {
+              const clickable = Boolean(cert.imageUrl);
+              return (
+                <motion.div
+                  key={cert.title}
+                  {...reveal}
+                  transition={{ duration: 0.4, delay: idx * 0.08 }}
+                  whileHover={clickable ? { scale: 1.02 } : undefined}
+                  onClick={clickable ? () => setSelectedCert(cert) : undefined}
+                  role={clickable ? "button" : undefined}
+                  tabIndex={clickable ? 0 : undefined}
+                  aria-label={clickable ? `Ver certificado: ${cert.title}` : undefined}
+                  onKeyDown={
+                    clickable
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            setSelectedCert(cert);
+                          }
+                        }
+                      : undefined
+                  }
+                  className={`group glass-panel rounded-2xl p-6 border border-brand-cyan/15 hover:border-brand-green/40 hover:shadow-[0_0_22px_rgba(124,255,0,0.12)] transition-colors duration-300 flex flex-col gap-3 ${clickable ? "cursor-pointer" : ""}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-xl bg-brand-bg-main border border-brand-cyan/20 group-hover:border-brand-green/40 flex items-center justify-center text-brand-cyan group-hover:text-brand-green transition-colors">
+                      <GraduationCap className="w-5 h-5" aria-hidden="true" />
+                    </div>
+                    <span className="font-mono text-[9px] px-2 py-1 rounded bg-brand-cyan/10 border border-brand-cyan/25 text-brand-cyan uppercase tracking-wider text-right">
+                      {cert.category}
+                    </span>
                   </div>
-                  <span className="font-mono text-[9px] px-2 py-1 rounded bg-brand-cyan/10 border border-brand-cyan/25 text-brand-cyan uppercase tracking-wider text-right">
-                    {c.type}
-                  </span>
-                </div>
-                <h4 className="font-display font-semibold text-base text-brand-white leading-tight group-hover:text-brand-cyan transition-colors">{c.title}</h4>
-                <div className="mt-auto space-y-1.5 pt-2">
-                  <p className="text-brand-gray text-xs font-light flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-brand-cyan/70 shrink-0" aria-hidden="true" /> {c.institution}
-                  </p>
-                  <p className="text-brand-gray text-xs font-light flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-brand-cyan/70 shrink-0" aria-hidden="true" /> Conclusão: {c.completion}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
+                  <h4 className="font-display font-semibold text-base text-brand-white leading-tight group-hover:text-brand-cyan transition-colors">{cert.title}</h4>
+                  <div className="space-y-1.5">
+                    <p className="text-brand-gray text-xs font-light flex items-center gap-1.5">
+                      <Building2 className="w-3.5 h-3.5 text-brand-cyan/70 shrink-0" aria-hidden="true" /> {cert.institution}
+                    </p>
+                    <p className="text-brand-gray text-xs font-light flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5 text-brand-cyan/70 shrink-0" aria-hidden="true" /> {cert.year} · {cert.status}
+                    </p>
+                  </div>
+                  {clickable ? (
+                    <span className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-brand-cyan/25 group-hover:border-brand-cyan text-brand-cyan text-xs font-display font-medium group-hover:bg-brand-bg-card transition-colors">
+                      <Eye className="w-3.5 h-3.5" aria-hidden="true" /> Ver certificado
+                    </span>
+                  ) : (
+                    <span className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-brand-cyan/10 text-brand-gray/70 text-[11px] font-mono">
+                      Documento disponível mediante solicitação
+                    </span>
+                  )}
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Technical certificates block (expandable via data array) */}
-          <div className="pt-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Award className="w-5 h-5 text-brand-cyan shrink-0" aria-hidden="true" />
-              <h4 className="font-display font-semibold text-lg text-brand-white">Certificados Técnicos e Cursos Complementares</h4>
-            </div>
-
-            {certificates.length === 0 ? (
-              <div className="glass-panel rounded-2xl p-8 border border-dashed border-brand-cyan/20 text-center space-y-2">
-                <Award className="w-8 h-8 text-brand-cyan/60 mx-auto" aria-hidden="true" />
-                <p className="font-display font-medium text-sm text-brand-white">Em constante atualização</p>
-                <p className="text-brand-gray text-xs font-light max-w-md mx-auto leading-relaxed">
-                  Novos certificados e cursos complementares serão adicionados conforme concluídos. Documentos disponíveis mediante solicitação.
-                </p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {certificates.map((cert, idx) => (
-                  <motion.div
-                    key={`${cert.title}-${idx}`}
-                    {...reveal}
-                    transition={{ duration: 0.4, delay: idx * 0.06 }}
-                    whileHover={{ scale: 1.02 }}
-                    className="group glass-panel rounded-2xl p-5 border border-brand-cyan/15 hover:border-brand-green/40 hover:shadow-[0_0_22px_rgba(124,255,0,0.12)] transition-colors duration-300 flex flex-col gap-3"
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 rounded-lg bg-brand-bg-main border border-brand-cyan/20 flex items-center justify-center text-brand-cyan group-hover:text-brand-green transition-colors">
-                        <Award className="w-5 h-5" aria-hidden="true" />
-                      </div>
-                      <span className="font-mono text-[9px] px-2 py-1 rounded bg-brand-green/10 border border-brand-green/25 text-brand-green uppercase tracking-wider">
-                        {cert.status}
-                      </span>
-                    </div>
-                    <h5 className="font-display font-semibold text-sm text-brand-white leading-tight">{cert.title}</h5>
-                    <div className="space-y-1">
-                      <p className="text-brand-gray text-xs font-light">{cert.institution}</p>
-                      <p className="font-mono text-[10px] text-brand-cyan/80 uppercase tracking-wide">{cert.category} · {cert.year}</p>
-                    </div>
-                    {cert.fileUrl ? (
-                      <a
-                        href={cert.fileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Ver certificado: ${cert.title} (abre em nova aba)`}
-                        className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-brand-cyan/25 hover:border-brand-cyan text-brand-cyan text-xs font-display font-medium hover:bg-brand-bg-card transition-colors"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" aria-hidden="true" /> Ver certificado
-                      </a>
-                    ) : (
-                      <span className="mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-brand-cyan/10 text-brand-gray/70 text-[11px] font-mono cursor-not-allowed select-none">
-                        Documento disponível mediante solicitação
-                      </span>
-                    )}
-                  </motion.div>
-                ))}
-              </div>
-            )}
-          </div>
+          <p className="font-mono text-[10px] text-brand-gray/80 pt-1 leading-relaxed">
+            Por segurança, dados pessoais (CPF, RG, data de nascimento e códigos de validação) foram ocultados nas imagens. Outros certificados e cursos complementares serão adicionados conforme concluídos. Documentos originais disponíveis mediante solicitação.
+          </p>
         </div>
 
         {/* Serviços e Áreas de Atuação */}
@@ -335,6 +310,16 @@ export default function TransparencySection() {
         </div>
 
       </div>
+
+      {/* Visualizador de certificados */}
+      <AnimatePresence>
+        {selectedCert && (
+          <CertificateModal
+            certificate={selectedCert}
+            onClose={() => setSelectedCert(null)}
+          />
+        )}
+      </AnimatePresence>
     </section>
   );
 }

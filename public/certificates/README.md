@@ -1,45 +1,49 @@
 # Certificados — ED² Tecnologic
 
-Pasta para armazenar **certificados e diplomas já tratados** que serão exibidos
-na seção "Transparência e Credibilidade" do site.
+Pasta com as **imagens já tratadas** dos certificados/diplomas exibidos na
+seção "Transparência e Credibilidade". Ao clicar no card, a imagem abre num
+modal com a descrição ao lado.
 
 ## ⚠️ Antes de adicionar qualquer documento (obrigatório)
 
 Tudo que estiver em `public/` fica **público** na internet (ex.:
-`/certificates/curso.pdf` vira `https://ed2tecnologic.com.br/certificates/curso.pdf`).
-Portanto, **trate o documento antes de colocá-lo aqui**. Remova/oculte:
+`/certificates/curso.png` vira `https://ed2tecnologic.com.br/certificates/curso.png`).
+Portanto, **trate a imagem antes de colocá-la aqui**. Oculte (cubra):
 
-- ❌ CPF, RG e outros números de documento pessoal
-- ❌ Assinatura manuscrita sensível
-- ❌ QR Code / código de autenticação privado do diploma
-- ❌ Endereço, telefone pessoal ou qualquer dado pessoal desnecessário
-- ❌ Documento completo sem necessidade (prefira a versão/recorte institucional)
+- ❌ **CPF** e **RG**
+- ❌ **Data de nascimento**
+- ❌ **Códigos de validação** / QR Code do diploma
+- ❌ Assinatura manuscrita pessoal, endereço, telefone e dados pessoais desnecessários
 
-Mantenha apenas as informações públicas relevantes: nome do curso, instituição,
-carga horária, data de conclusão e a logo/identidade da instituição.
+Mantenha apenas o que é institucional: curso, instituição, carga horária,
+data de conclusão e a identidade visual da instituição.
 
-## Como vincular um certificado ao site
+> As imagens atuais (`ads-unicesumar.png`, `pos-dev-web.png`,
+> `pos-seguranca-redes.png`) **já foram redatadas**: CPF, RG, data de
+> nascimento e código de validação foram cobertos.
 
-1. Salve o arquivo tratado aqui, ex.: `public/certificates/seguranca-redes.pdf`.
+## Como vincular um novo certificado
+
+1. Salve a imagem tratada aqui, ex.: `public/certificates/novo-curso.png`
+   (`.png`, `.jpg` ou `.webp`; proporção paisagem renderiza melhor no modal).
+
 2. Abra `src/data/businessInfo.ts` e adicione um item no array `certificates`:
 
    ```ts
-   export const certificates: Certificate[] = [
-     {
-       title: "Segurança de Redes de Computadores",
-       institution: "Faculdade Iguaçu",
-       category: "Pós-graduação",
-       year: "2025",
-       fileUrl: "/certificates/seguranca-redes.pdf", // caminho público
-       status: "Concluído",
-     },
-   ];
+   {
+     title: "Nome do certificado",
+     institution: "Instituição",
+     category: "Pós-graduação / Curso / Certificação",
+     year: "2026",
+     imageUrl: "/certificates/novo-curso.png", // caminho público da imagem tratada
+     status: "Concluído",
+     description: "Resumo. Cite aqui que dados foram ocultados por privacidade.",
+   }
    ```
 
-3. Comportamento automático na seção:
-   - **Com `fileUrl`** preenchido → aparece o botão **"Ver certificado"** (abre em nova aba).
-   - **Sem `fileUrl`** (vazio `""`) → aparece **"Documento disponível mediante solicitação."**
-   - Array vazio → mostra o bloco "Em constante atualização".
+3. Comportamento automático:
+   - **Com `imageUrl`** → card clicável que abre a imagem no modal ("Ver certificado").
+   - **Sem `imageUrl`** → exibe "Documento disponível mediante solicitação".
 
-> Regra geral: **não publicar documentos completos por padrão.** Só publique o
-> que já estiver tratado e sem dados sensíveis.
+> Regra geral: **não publicar documentos completos sem tratamento.** Só publique
+> a versão com os dados sensíveis ocultados.

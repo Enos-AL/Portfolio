@@ -65,26 +65,62 @@ export interface Certificate {
   category: string;
   year: string;
   /**
-   * Caminho do documento JÁ TRATADO em /public/certificates
-   * (ex.: "/certificates/nome-do-curso.pdf").
-   * Deixe vazio ("") para exibir "Documento disponível mediante solicitação".
+   * Imagem JÁ TRATADA do certificado em /public/certificates
+   * (ex.: "/certificates/nome-do-curso.png"). Ao clicar, abre num modal.
+   * Deixe vazio para exibir "Documento disponível mediante solicitação".
    */
-  fileUrl?: string;
+  imageUrl?: string;
   status: string;
+  description?: string;
 }
 
-// Bloco preparado para expansão futura. Basta adicionar novos objetos aqui.
-// Os documentos só devem ser publicados depois de tratados (sem CPF,
-// assinatura sensível, códigos privados ou dados pessoais desnecessários).
+// Documentos só são publicados depois de TRATADOS: CPF, RG, data de
+// nascimento e códigos de validação são ocultados (ver public/certificates/README).
 export const certificates: Certificate[] = [
-  // {
-  //   title: "Nome do certificado",
-  //   institution: "Instituição",
-  //   category: "Tecnologia",
-  //   year: "2026",
-  //   fileUrl: "", // se vazio -> "Documento disponível mediante solicitação"
-  //   status: "Concluído",
-  // },
+  {
+    title: "Análise e Desenvolvimento de Sistemas",
+    institution: "Universidade Cesumar — Unicesumar",
+    category: "Graduação / Tecnólogo",
+    year: "2024",
+    imageUrl: "/certificates/ads-unicesumar.png",
+    status: "Concluído",
+    description:
+      "Diploma de Tecnólogo em Análise e Desenvolvimento de Sistemas. Por segurança e privacidade, o RG, a data de nascimento e o código de validação foram ocultados nesta imagem. Documento original disponível mediante solicitação.",
+  },
+  {
+    title: "Desenvolvimento em Aplicações Web",
+    institution: "Faculdade Iguaçu",
+    category: "Pós-graduação Lato Sensu (720h)",
+    year: "2025",
+    imageUrl: "/certificates/pos-dev-web.png",
+    status: "Concluído",
+    description:
+      "Certificado de Especialista em Desenvolvimento em Aplicações Web. Por segurança e privacidade, o número de CPF foi ocultado nesta imagem. Documento original disponível mediante solicitação.",
+  },
+  {
+    title: "Segurança de Redes de Computadores",
+    institution: "Faculdade Iguaçu",
+    category: "Pós-graduação Lato Sensu (700h)",
+    year: "2025",
+    imageUrl: "/certificates/pos-seguranca-redes.png",
+    status: "Concluído",
+    description:
+      "Certificado de Especialista em Segurança de Redes de Computadores. Por segurança e privacidade, o número de CPF foi ocultado nesta imagem. Documento original disponível mediante solicitação.",
+  },
+];
+
+export interface SocialLink {
+  name: string;
+  url: string;
+  icon: string; // nome do ícone lucide-react
+}
+
+// Redes sociais oficiais. Adicione LinkedIn/Facebook quando tiver as URLs.
+export const socialLinks: SocialLink[] = [
+  { name: "Instagram", url: "https://www.instagram.com/enos.cursos", icon: "Instagram" },
+  { name: "GitHub", url: "https://github.com/Enos-AL", icon: "Github" },
+  // { name: "LinkedIn", url: "https://www.linkedin.com/in/...", icon: "Linkedin" },
+  // { name: "Facebook", url: "https://www.facebook.com/...", icon: "Facebook" },
 ];
 
 export const serviceAreas: string[] = [
