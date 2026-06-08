@@ -27,6 +27,21 @@ export default function Navbar() {
     { name: "Por que ED²", href: "#por-que-ed2" },
   ];
 
+  // Closes the mobile menu and scrolls reliably to the section (works even on
+  // mobile where the animated/blurred panel can swallow the default link tap).
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header
       id="main-nav-header"
@@ -111,14 +126,14 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="md:hidden border-t border-brand-cyan/10 bg-brand-bg-main/95 backdrop-blur-xl"
+            className="md:hidden relative z-50 overflow-hidden border-t border-brand-cyan/10 bg-brand-bg-main shadow-[0_12px_30px_rgba(0,0,0,0.5)]"
           >
             <div className="px-5 pt-3 pb-6 space-y-2">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="block px-4 py-3 rounded-lg text-base font-medium text-brand-gray hover:text-brand-cyan hover:bg-brand-bg-card border-l-2 border-transparent hover:border-brand-cyan transition-all duration-200"
                 >
                   {link.name}
@@ -128,7 +143,7 @@ export default function Navbar() {
                 <a
                   id="cta-mobile-whatsapp"
                   href="#contato"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(e, "#contato")}
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-display font-bold text-sm text-brand-bg-main bg-brand-cyan hover:bg-brand-green shadow-lg transition-colors text-center"
                 >
                   <Phone className="w-4 h-4" />
