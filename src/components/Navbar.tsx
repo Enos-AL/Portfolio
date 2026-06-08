@@ -25,6 +25,7 @@ export default function Navbar() {
     { name: "Sistemas", href: "#sistemas" },
     { name: "Tecnologia", href: "#tecnologia" },
     { name: "Por que ED²", href: "#por-que-ed2" },
+    { name: "Transparência", href: "#transparencia" },
   ];
 
   // Closes the mobile menu and scrolls reliably to the section. On mobile the

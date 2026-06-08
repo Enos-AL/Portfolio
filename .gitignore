@@ -7,3 +7,6 @@ coverage/
 .env*
 !.env.example
 .vscode/
+
+# Documentação interna / privada (não publicar)
+docs/

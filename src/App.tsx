@@ -8,6 +8,7 @@ import ProjectsSection from "./components/ProjectsSection";
 import ProjectDetailsModal from "./components/ProjectDetailsModal";
 import TechStackSection from "./components/TechStackSection";
 import DiferenciaisSection from "./components/DiferenciaisSection";
+import TransparencySection from "./components/TransparencySection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
 import { Project } from "./types";
@@ -53,6 +54,9 @@ export default function App() {
 
         {/* Por que escolher a ED² Tecnologic */}
         <DiferenciaisSection />
+
+        {/* Transparência e Credibilidade */}
+        <TransparencySection />
 
         {/* Contato & Chamada ao Cliente */}
         <ContactSection />
