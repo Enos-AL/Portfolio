@@ -11,6 +11,7 @@ import DiferenciaisSection from "./components/DiferenciaisSection";
 import TransparencySection from "./components/TransparencySection";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
+import CookieConsent from "./components/CookieConsent";
 import { Project } from "./types";
 import { AnimatePresence } from "motion/react";
 
@@ -75,6 +76,9 @@ export default function App() {
           />
         )}
       </AnimatePresence>
+
+      {/* 6. Aviso de cookies (LGPD) — controla o consentimento do GA4 */}
+      <CookieConsent />
 
     </div>
   );

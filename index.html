@@ -10,6 +10,22 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+
+      // Consent Mode v2 (LGPD): nega o armazenamento de cookies até o usuário aceitar.
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied'
+      });
+
+      // Se o visitante já aceitou em uma visita anterior, libera a análise.
+      try {
+        if (localStorage.getItem('cookie-consent') === 'accepted') {
+          gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) {}
+
       gtag('js', new Date());
       gtag('config', 'G-M7P883H3LE');
     </script>
