@@ -94,7 +94,7 @@ export default function DiferenciaisSection() {
                     key={pt.title}
                     initial={{ opacity: 0, x: 15 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.2 }}
                     transition={{ duration: 0.4, delay: idx * 0.05 }}
                     className="flex gap-4 p-4 rounded-xl hover:bg-brand-bg-card border border-transparent hover:border-brand-cyan/10 transition-all duration-300 group"
                   >

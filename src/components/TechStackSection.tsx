@@ -83,7 +83,11 @@ export default function TechStackSection() {
                     return (
                       <motion.div
                         key={tech.name}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: false, amount: 0.2 }}
                         whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.3 }}
                         className="glass-panel hover:bg-brand-bg-card hover:border-brand-cyan/40 p-4 rounded-xl flex items-center gap-3 transition-colors duration-300 group"
                       >
                         <div className="p-2 rounded-lg bg-brand-bg-main border border-brand-cyan/10 group-hover:bg-brand-cyan/10 group-hover:border-brand-cyan/20 transition-all text-brand-cyan">

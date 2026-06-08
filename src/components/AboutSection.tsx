@@ -99,7 +99,7 @@ export default function AboutSection() {
                     key={diff.title}
                     initial={{ opacity: 0, y: 15 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false, amount: 0.2 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="glass-panel hover:bg-brand-bg-card/90 rounded-2xl p-5 hover:border-brand-cyan/40 transition-all duration-300 group"
                     style={{ borderLeftColor: diff.colorClass === "text-brand-cyan" ? "rgba(0, 217, 255, 0.4)" : diff.colorClass === "text-brand-blue" ? "rgba(0, 140, 255, 0.4)" : "rgba(124, 255, 0, 0.4)" }}

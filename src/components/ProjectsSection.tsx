@@ -160,7 +160,8 @@ export default function ProjectsSection({ onSelectProject }: ProjectsSectionProp
                   layout
                   key={project.id}
                   initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: false, amount: 0.2 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.4 }}
                   className="group relative flex flex-col justify-between rounded-2xl bg-brand-bg-card/75 border border-brand-cyan/15 hover:border-brand-cyan/40 hover:shadow-[0_12px_40px_rgba(0,217,255,0.12)] transition-all-300 overflow-hidden"
