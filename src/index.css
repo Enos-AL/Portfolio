@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-brand-bg-main: #02070D;
+  --color-brand-bg-card: #061426;
+  --color-brand-blue: #008CFF;
+  --color-brand-cyan: #00D9FF;
+  --color-brand-green: #7CFF00;
+  --color-brand-white: #F5F7FA;
+  --color-brand-gray: #AAB4C0;
+}
+
+/* Custom styles for high-fidelity interactive technology portals */
+
+html {
+  scroll-behavior: smooth;
+  background-color: #02070D;
+  color: #F5F7FA;
+  font-family: var(--font-sans);
+}
+
+/* Visible keyboard focus for accessibility.
+   Uses box-shadow so it stays visible even where utilities set outline:none. */
+:focus-visible {
+  outline: 2px solid #00D9FF;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 217, 255, 0.25);
+  border-radius: 6px;
+}
+
+/* Respect users who prefer reduced motion: tone down animations/transitions. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Custom scrollbar matching dark cybernetic terminal specs */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #02070D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #061426;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 217, 255, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #008CFF;
+  box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
+}
+
+/* Cybernetic Grid Generator */
+.bg-grid-cyber {
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dot-cyber {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(0, 217, 255, 0.06) 1px, transparent 1px);
+}
+
+/* Glassmorphic Cyber Cards */
+.glass-panel {
+  background: rgba(6, 20, 38, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 217, 255, 0.15);
+}
+
+.glass-panel-neon {
+  background: rgba(6, 20, 38, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(124, 255, 0, 0.2);
+}
+
+/* Glowing Neon Borders */
+.glow-cyan-hover:hover {
+  border-color: rgba(0, 217, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 217, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.glow-green-hover:hover {
+  border-color: rgba(124, 255, 0, 0.6);
+  box-shadow: 0 0 20px rgba(124, 255, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.glow-blue-hover:hover {
+  border-color: rgba(0, 140, 255, 0.6);
+  box-shadow: 0 0 20px rgba(0, 140, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Flowing Linear Circuit Line Animations */
+@keyframes scanning {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanner-line {
+  animation: scanning 8s linear infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.2; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+}
+
+.glow-pulse {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* Animated gradient text */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-title {
+  background: linear-gradient(135deg, #00D9FF 0%, #008CFF 50%, #7CFF00 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+.gradient-title-cyan-soft {
+  background: linear-gradient(135deg, #FFFFFF 0%, #00D9FF 60%, #008CFF 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-shift 10s ease infinite;
+}
+
+/* Dynamic glow button animation */
+.glow-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: inherit;
+  border-radius: inherit;
+  filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.glow-btn:hover::before {
+  opacity: 0.6;
+}
+
+/* Standard animation utility classes for safety */
+.transition-all-300 {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
