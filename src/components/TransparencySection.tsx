@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { motion } from "motion/react";
 import {
-  businessInfo, academicCredentials, certificates, serviceAreas
+  businessInfo, academicCredentials, certificates, serviceAreas, secondaryActivities
 } from "../data/businessInfo";
 
 // Reusable entrance animation (respects prefers-reduced-motion via MotionConfig).
@@ -296,11 +296,38 @@ export default function TransparencySection() {
                 <BookOpen className="w-5 h-5" aria-hidden="true" />
               </div>
               <p className="font-mono text-[10px] text-brand-gray uppercase tracking-wider">CNAE principal</p>
-              <p className="font-display font-bold text-base text-brand-white leading-tight">
-                P-8599-6/03 — Treinamento em informática
+              <p className="font-display font-bold text-sm text-brand-white leading-snug">
+                {businessInfo.mainCnae} — {businessInfo.mainActivity}
               </p>
             </motion.div>
           </div>
+
+          {/* Atividades secundárias registradas (destaques de TI) */}
+          <motion.div
+            {...reveal}
+            transition={{ duration: 0.5, delay: 0.15 }}
+            className="glass-panel rounded-2xl p-6 border border-brand-cyan/15 space-y-3"
+          >
+            <div className="flex items-center gap-2">
+              <FileText className="w-4 h-4 text-brand-cyan shrink-0" aria-hidden="true" />
+              <h4 className="font-display font-semibold text-sm text-brand-white">
+                Atividades secundárias registradas <span className="text-brand-gray font-normal">(destaques de TI)</span>
+              </h4>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {secondaryActivities.map((a) => (
+                <span
+                  key={a}
+                  className="inline-flex items-center px-3 py-1.5 rounded-lg bg-brand-bg-main/50 border border-brand-cyan/10 text-brand-gray font-mono text-[11px] leading-tight"
+                >
+                  {a}
+                </span>
+              ))}
+            </div>
+            <p className="font-mono text-[10px] text-brand-gray/80 tracking-wide pt-1">
+              Lista completa de atividades econômicas disponível na verificação pública dos dados da empresa.
+            </p>
+          </motion.div>
 
           <p className="text-brand-gray text-sm font-light leading-relaxed max-w-3xl">
             Além da atividade principal, a ED² Tecnologic estrutura soluções tecnológicas voltadas à digitalização de processos, suporte operacional, automação e desenvolvimento de sistemas sob medida.

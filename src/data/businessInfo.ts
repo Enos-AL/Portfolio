@@ -12,14 +12,24 @@ export const businessInfo = {
   openingDate: "24/02/2025",
   // Posicionamento/segmento de atuação (descritivo, voltado ao negócio).
   segment: "Tecnologia e Soluções Digitais",
-  // Atividade e CNAE oficiais registrados (verificáveis na consulta pública).
-  mainActivity: "Treinamento em informática",
-  mainCnae: "P-8599-6/03",
+  // Atividade e CNAE principais oficiais (conforme Cartão CNPJ / Receita Federal).
+  mainActivity: "Suporte técnico, manutenção e outros serviços em tecnologia da informação",
+  mainCnae: "6209-1/00",
   description:
     "A ED² Tecnologic atua com soluções digitais, desenvolvimento de sistemas, sites profissionais, suporte técnico, automações, infraestrutura, treinamento em informática e tecnologia sob medida para empresas, comércios e gestão pública.",
   publicVerificationUrl:
     "https://www.econodata.com.br/consulta-empresa/59635881000160-enos-alves-santos",
 };
+
+// Destaques das atividades secundárias REGISTRADAS (somente as relevantes de
+// tecnologia). A lista oficial completa fica disponível na verificação pública.
+export const secondaryActivities: string[] = [
+  "6201-5/01 — Desenvolvimento de programas de computador sob encomenda",
+  "6202-3/00 — Desenvolvimento e licenciamento de programas de computador customizáveis",
+  "6311-9/00 — Tratamento de dados, hospedagem e serviços de aplicação na internet",
+  "9511-8/00 — Reparação e manutenção de computadores e periféricos",
+  "6190-6/99 — Outras atividades de telecomunicações",
+];
 
 export interface AcademicCredential {
   title: string;
