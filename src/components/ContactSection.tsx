@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Send, Phone, Mail, MapPin, Check, Copy, MessageSquare, Sparkles, ExternalLink } from "lucide-react";
+import { Send, Phone, Mail, MapPin, Check, Copy, MessageSquare, Sparkles, ExternalLink, Share2 } from "lucide-react";
 import { motion } from "motion/react";
+import SocialLinks from "./SocialLinks";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -188,6 +189,19 @@ export default function ContactSection() {
               <span className="block text-center font-mono text-[9px] text-brand-gray tracking-wide">
                 Clique acima para abrir o chat diretamente e falar com Enos Alves Santos.
               </span>
+            </div>
+
+            {/* Redes e Plataformas oficiais */}
+            <div className="glass-panel rounded-2xl p-6 relative overflow-hidden">
+              <div className="absolute inset-0 bg-grid-cyber opacity-10" />
+              <h3 className="relative font-display font-bold text-lg text-brand-white tracking-tight mb-2 flex items-center gap-2 z-10">
+                <Share2 className="w-5 h-5 text-brand-cyan" aria-hidden="true" />
+                Redes e Plataformas
+              </h3>
+              <p className="relative text-brand-gray text-xs font-light leading-relaxed mb-5 z-10">
+                Acompanhe a ED² Tecnologic e conheça os bastidores dos nossos projetos, conteúdos e novidades.
+              </p>
+              <SocialLinks showLabels includeSite className="relative z-10" />
             </div>
 
           </div>

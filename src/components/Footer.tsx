@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Terminal, Shield, ChevronUp, Cpu, HeartPulse, Globe, Instagram, Github, Linkedin, Facebook } from "lucide-react";
-import { socialLinks } from "../data/businessInfo";
+import { Shield, ChevronUp } from "lucide-react";
+import SocialLinks from "./SocialLinks";
 import VisitorCounter from "./VisitorCounter";
-
-const socialIconMap: Record<string, React.ComponentType<any>> = {
-  Instagram,
-  Github,
-  Linkedin,
-  Facebook,
-};
 
 export default function Footer() {
   const [timeBR, setTimeBR] = useState("");
@@ -91,24 +84,12 @@ export default function Footer() {
               <span>Atendimento 100% remoto (online)</span>
             </div>
 
-            {/* Redes sociais */}
-            <div className="flex items-center gap-3 pt-2">
-              {socialLinks.map((s) => {
-                const Icon = socialIconMap[s.icon] || Globe;
-                return (
-                  <a
-                    key={s.name}
-                    href={s.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${s.name} da ED² Tecnologic (abre em nova aba)`}
-                    title={s.name}
-                    className="w-9 h-9 rounded-lg bg-brand-bg-card border border-brand-cyan/20 hover:border-brand-cyan/60 text-brand-gray hover:text-brand-cyan flex items-center justify-center transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(0,217,255,0.2)]"
-                  >
-                    <Icon className="w-4.5 h-4.5" aria-hidden="true" />
-                  </a>
-                );
-              })}
+            {/* Redes oficiais */}
+            <div className="space-y-2.5 pt-2">
+              <span className="block font-mono text-[10px] tracking-widest text-brand-cyan uppercase">
+                // Redes oficiais
+              </span>
+              <SocialLinks size="md" />
             </div>
           </div>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Terminal, Menu, X, Phone, Cpu, Settings, Layers, MessageSquare, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import SocialLinks from "./SocialLinks";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -100,8 +101,10 @@ export default function Navbar() {
             ))}
           </nav>
 
-          {/* Fale Conosco CTA Button */}
-          <div className="hidden md:block">
+          {/* Right group: redes sociais discretas + CTA "Fale Conosco" */}
+          <div className="hidden md:flex items-center gap-3">
+            <SocialLinks size="sm" />
+            <span className="w-px h-5 bg-brand-cyan/15" aria-hidden="true" />
             <a
               id="cta-nav-whatsapp"
               href="#contato"
@@ -148,6 +151,14 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
+              {/* Redes sociais oficiais no menu mobile */}
+              <div className="pt-4 px-4 space-y-2.5">
+                <span className="block font-mono text-[10px] tracking-widest text-brand-cyan uppercase">
+                  // Redes oficiais
+                </span>
+                <SocialLinks size="md" />
+              </div>
+
               <div className="pt-4 px-4">
                 <a
                   id="cta-mobile-whatsapp"

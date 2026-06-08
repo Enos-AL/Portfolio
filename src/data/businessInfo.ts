@@ -109,19 +109,8 @@ export const certificates: Certificate[] = [
   },
 ];
 
-export interface SocialLink {
-  name: string;
-  url: string;
-  icon: string; // nome do ícone lucide-react
-}
-
-// Redes sociais oficiais. Adicione LinkedIn/Facebook quando tiver as URLs.
-export const socialLinks: SocialLink[] = [
-  { name: "Instagram", url: "https://www.instagram.com/enos.cursos", icon: "Instagram" },
-  { name: "GitHub", url: "https://github.com/Enos-AL", icon: "Github" },
-  // { name: "LinkedIn", url: "https://www.linkedin.com/in/...", icon: "Linkedin" },
-  // { name: "Facebook", url: "https://www.facebook.com/...", icon: "Facebook" },
-];
+// Redes sociais e plataformas oficiais agora vivem em ./socialLinks.ts
+// (fonte única consumida pelo componente <SocialLinks />).
 
 export const serviceAreas: string[] = [
   "Desenvolvimento de sistemas",

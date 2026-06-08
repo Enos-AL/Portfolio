@@ -1,6 +1,7 @@
 import React from "react";
 import { ChevronRight, Database, Code, ShieldCheck, HeartPulse, Sparkles } from "lucide-react";
 import { motion } from "motion/react";
+import SocialLinks from "./SocialLinks";
 
 export default function HeroSection() {
   return (
@@ -101,6 +102,19 @@ export default function HeroSection() {
               >
                 Fale Conosco
               </a>
+            </motion.div>
+
+            {/* Conecte-se: redes sociais oficiais */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.45 }}
+              className="flex flex-col sm:flex-row sm:items-center gap-3 pt-4"
+            >
+              <span className="font-mono text-[11px] tracking-wide text-brand-gray uppercase">
+                Conecte-se com a ED² Tecnologic
+              </span>
+              <SocialLinks size="md" />
             </motion.div>
           </div>
 
