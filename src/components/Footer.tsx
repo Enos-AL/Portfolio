@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Terminal, Shield, ChevronUp, Cpu, HeartPulse, Globe, Instagram, Github, Linkedin, Facebook } from "lucide-react";
 import { socialLinks } from "../data/businessInfo";
+import VisitorCounter from "./VisitorCounter";
 
 const socialIconMap: Record<string, React.ComponentType<any>> = {
   Instagram,
@@ -165,6 +166,9 @@ export default function Footer() {
                 </div>
                 <span className="text-brand-white font-semibold tabular-nums">{timeUTC || "00:00:00"}</span>
               </div>
+
+              {/* Contador de visitas (Netlify Function + Blobs) */}
+              <VisitorCounter />
 
             </div>
           </div>
